@@ -15,8 +15,8 @@
 - @example: intron_filter_by_GRanges(import.gff(my.gtf.file))
 
 ### 2. intron_filter_by_gff.R <br />
-- Systemetically go through the process of intron_filter_by_GRanges of all selected genes in a gtf file. It produces three types of gtf files for each gene in the same directory. (_remain2.0.gtf, _potential_new_exon.gtf, _filtered2.0.gtf)
-- intron_filter_by_gff(gff, custom_gene = NULL) It also creates a subdirectory called **/binary_results**. All the binary forms are stored as csv files in this subdirectory.
+- Systemetically go through the process of intron_filter_by_GRanges of all selected genes in a gtf file. It produces three types of gtf files for each gene in the same directory. (_remain2.0.gtf, _potential_new_exon.gtf, _filtered2.0.gtf) It also creates a subdirectory called **/binary_results**. All the binary forms are stored as csv files in this subdirectory.
+- intron_filter_by_gff(gff, custom_gene = NULL)
 - @param: 
   - **_gff_** - gtf or gff file
   - **_custom_gene_** - a vector of strings, containing the gene names
