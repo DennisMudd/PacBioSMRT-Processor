@@ -9,7 +9,7 @@
 ### 1. intron_filter_by_GRanges.R <br />
 - Filter the transcripts with partial exons in comparison to the Gencode Reference Genome. Then filter the ones with intron retention through a self-learning process within the remaining group. Output the binary forms of all three groups, their names, count, and all exons as in GRange.
 - intron_filter_by_GRanges(gr_input)
-- @param: **_gr_input_** - GRangesList
+- @param: **gr_input** - GRangesList
 - @return: {"prefiltered_new_exon", "remain", "filtered", "prefiltered_binary", "remain_binary", "filtered_binary",
        "prefiltered_new_exon_count", "remain_count", "filtered_count","isoform_count", "all_exon"}
 - @example: intron_filter_by_GRanges(import.gff(my.gtf.file))
@@ -28,4 +28,6 @@
 - isoform_group(input_binary_mat, isoform_names)
 - @param: **_input_binary_mat_** - a matrix of binary forms of transcripts, typically as output from intron_filter_by_GRanges or read from csv files in the /binary_results/ directory; **_isoform_names_** - Names of isoforms respective to the input matrix, typically as output from intron_filter_by_GRanges, or contained in the csv files
 - @return: {"index", "exon_binary", "group"}
-- @example: temp <- intron_filter_by_GRanges(import.gff(my.gtf.file)); isoform_group(temp$remain_binary, temp$remain)
+- @example: 
+  - temp <- intron_filter_by_GRanges(import.gff(my.gtf.file))
+  - isoform_group(temp$remain_binary, temp$remain)
