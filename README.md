@@ -35,3 +35,17 @@
 - @example: 
   - temp <- intron_filter_by_GRanges(import.gff(my.gtf.file))
   - isoform_group(temp$remain_binary, temp$remain)
+  
+### 4. generate_exon_only_binary.R <br />
+- Apply isoform_group.R to all csv files(binary forms) in the targeted directory. Simplified the binary forms according to the isoform_group.R and save them as csv files in a new subdirectory.
+- generate_exon_only_binary(binary_folder_path, result_folder_name, custom_gene = NULL, file_pattern = "_binary.csv")
+- @param: 
+  - **_binary_folder_path_** - the path to the folder containing the csv files of binary forms
+  - **_result_folder_name_** - User desired output directory name
+  - **custom_gene** - a vector of strings, containing the gene names
+  - **file_pattern** - the pre/post-fix of the files name; no need to change if go through the intron_filter_by_gff function
+- @return: None
+- @example: generate_exon_only_binary(binary_folder_path = "~/binary_results/",
+                          result_folder_name = "your.output.dir",
+                          custom_gene = NULL)
+
