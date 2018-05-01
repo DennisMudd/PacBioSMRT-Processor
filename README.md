@@ -49,7 +49,7 @@
                           result_folder_name = "your.output.dir",
                           custom_gene = NULL)
  
- ### 5. simplify_GRanges.R <br />
+ ### 5. simplify_GRanges.R (Secondary in the process) <br />
 - Serves as a embedded function in the next function simplify_gff.R
 - simplify_GRanges(input_gr_exon, group_list, input_gene_name, output_folder = "simplified_gtf")
 - @param: 
