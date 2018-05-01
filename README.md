@@ -42,10 +42,21 @@
 - @param: 
   - **_binary_folder_path_** - the path to the folder containing the csv files of binary forms
   - **_result_folder_name_** - User desired output directory name
-  - **custom_gene** - a vector of strings, containing the gene names
-  - **file_pattern** - the pre/post-fix of the files name; no need to change if go through the intron_filter_by_gff function
+  - **_custom_gene_** - a vector of strings, containing the gene names
+  - **_file_pattern_** - the pre/post-fix of the files name; no need to change if go through the intron_filter_by_gff function
 - @return: None
 - @example: generate_exon_only_binary(binary_folder_path = "~/binary_results/",
                           result_folder_name = "your.output.dir",
                           custom_gene = NULL)
+ 
+ ### 5. simplify_GRanges.R <br />
+- Serves as a embedded function in the next function simplify_gff.R
+- simplify_GRanges(input_gr_exon, group_list, input_gene_name, output_folder = "simplified_gtf")
+- @param: 
+  - **_input_gr_exon_** - GRangeList object
+  - **_group_list_** - a list of index for grouping
+  - **_input_gene_name_** - gene name
+  - **_output_folder_** - output directory name
+- @return: A GRangeList object
+- @example: simplify_GRanges(GRangeList, isoform_group.group, "CD5")
 
