@@ -49,7 +49,7 @@
                           result_folder_name = "your.output.dir",
                           custom_gene = NULL)
  
- ### 5. simplify_GRanges.R (Secondary in the process) <br />
+ ### 5. simplify_GRanges.R (secondary in the process) <br />
 - Serves as a embedded function in the next function simplify_gff.R
 - simplify_GRanges(input_gr_exon, group_list, input_gene_name, output_folder = "simplified_gtf")
 - @param: 
@@ -59,4 +59,14 @@
   - **_output_folder_** - output directory name
 - @return: A GRangeList object
 - @example: simplify_GRanges(GRangeList, isoform_group.group, "CD5")
+
+### 6. simplify_gff.R <br />
+- Simplify a gtf/gff file based on the process from previous functions, which filter transcripts with partial exons and intron retentions, and cluster the rest into simplified binary. The simplified gtf file for each gene is stored in the subdirectory **/processed_gtf_files/**. The final output will be a gtf file with an additional prefix of "simplified_" in the working directory.
+- simplify_gff(gff, custom_gene = NULL, output_folder = "simplified_gtf")
+- @param: 
+  - **_gff_** - path of gtf/gff file
+  - **_custom_gene_** - a vector of strings, containing the gene names
+  - **_output_folder_** - output directory name
+- @return: {"output", "computed_genes"}
+- @example: simplify_gff(your.gtf.file)
 
