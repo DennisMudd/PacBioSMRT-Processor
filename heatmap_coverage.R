@@ -1,15 +1,15 @@
-heatmap_coverage <- function(gr_input, output_file_path = getwd(), isoform_group_index, gencode_gtf){
+heatmap_coverage <- function(gr_input, output_file_path = getwd(), isoform_group_index){
   ##Prepare gtf file from hg38
-  #if(!file.exists("Gencode_proteinCoding.gtf")){
-  #  library(AnnotationHub)
-  #  ah = AnnotationHub()
-  #  ah = subset(ah,species=="Homo sapiens")
-  #  qhs <- query(ah, c("Ensembl", "gene", "annotation", "grch38"))
-  #  gtf <- qhs[["AH51014"]] #Homo_sapiens.GRCh38.85.gtf
-  #  export(gtf[gtf$transcript_biotype %in% "protein_coding", ], "Gencode_proteinCoding.gtf")
-  #}
+  if(!file.exists("Gencode_proteinCoding.gtf")){
+    library(AnnotationHub)
+    ah = AnnotationHub()
+    ah = subset(ah,species=="Homo sapiens")
+    qhs <- query(ah, c("Ensembl", "gene", "annotation", "grch38"))
+    gtf <- qhs[["AH51014"]] #Homo_sapiens.GRCh38.85.gtf
+    export(gtf[gtf$transcript_biotype %in% "protein_coding", ], "Gencode_proteinCoding.gtf")
+  }
 
-  #gencode_gtf <- import.gff("Gencode_proteinCoding.gtf")
+  gencode_gtf <- import.gff("Gencode_proteinCoding.gtf")
   gencode_gtf_gene <- gencode_gtf[gencode_gtf$gene_name %in% gr_input$gffcompare_gene_name]
   if(unique(gr_input$gffcompare_gene_name[!is.na(gr_input$gffcompare_gene_name)]) > 1){
     gencode_gtf_gene <- gencode_gtf[gencode_gtf$gene_name %in% unique(gr_input$gffcompare_gene_name[!is.na(gr_input$gffcompare_gene_name)])[1]]
@@ -19,7 +19,7 @@ heatmap_coverage <- function(gr_input, output_file_path = getwd(), isoform_group
   gencode_list_ranges = reduce(gencode_list_input)
 
   gene_name <- unique(gr_input$gffcompare_gene_name)[1]
-  dir.create(file.path(output_file_path, "output_heatmaps_4.0/"), showWarnings = F)
+  dir.create(file.path(output_file_path, "output_heatmaps/"), showWarnings = F)
   gr_exon <- gr_input[gr_input$type == "exon"]
   gr_list_input = split(gr_exon, gr_exon$transcript_id)
   isoform_names <- names(gr_list_input)
@@ -107,7 +107,7 @@ heatmap_coverage <- function(gr_input, output_file_path = getwd(), isoform_group
   rownames(final_coverage_out_2) <- annot
   colnames(final_coverage_out_2) <- width(gr_base)
 
-  out_png <- file.path(output_file_path, "output_heatmaps_4.0", paste(gene, "_coverage_heatmap.png", sep = ""))
+  out_png <- file.path(output_file_path, "output_heatmaps", paste(gene, "_coverage_heatmap.png", sep = ""))
   myColor <- colorRampPalette(c("white", "blue", "black"))(100)
   mat <- matrix(NA, nrow = nrow(final_coverage_out), ncol = ncol(final_coverage_out))
   for(i in 1:nrow(mat)){
