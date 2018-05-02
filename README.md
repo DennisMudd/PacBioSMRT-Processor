@@ -49,7 +49,7 @@
                           result_folder_name = "your.output.dir",
                           custom_gene = NULL)
  
- ### 5. simplify_GRanges.R (secondary in the process) <br />
+### 5. simplify_GRanges.R (secondary in the process) <br />
 - Serves as a embedded function in the next function simplify_gff.R
 - simplify_GRanges(input_gr_exon, group_list, input_gene_name, output_folder = "simplified_gtf")
 - @param: 
@@ -69,4 +69,14 @@
   - **_output_folder_** - output directory name
 - @return: {"output", "computed_genes"}
 - @example: simplify_gff(your.gtf.file)
+
+ ### 7. heatmap_coverage.R <br />
+- Generate a heatmap based on the "_exon_only_binary.csv" files that contain simplified binary forms of transcripts that remained. The heatmap is saved as a png file in the created directory **/output_heatmaps/**
+- heatmap_coverage(gr_input, output_file_path = getwd(), isoform_group_index)
+- @param: 
+  - **_gr_input_** - GRangeList object
+  - **_output_file_path_** - output directory; if not otherwise specified, the output heatmap folder will be in the local directory.
+  - **_isoform_group_index_** - a vector of group number for the input isoforms
+- @return: a heatmap of the analyzed gene
+- @example: heatmap_coverage(your.gr.input, getwd(), c(1,2,3,1,2))
 
