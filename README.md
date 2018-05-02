@@ -70,7 +70,7 @@
 - @return: {"output", "computed_genes"}
 - @example: simplify_gff(your.gtf.file)
 
- ### 7. heatmap_coverage.R <br />
+### 7. heatmap_coverage.R <br />
 - Generate a heatmap based on the "_exon_only_binary.csv" files that contain simplified binary forms of transcripts that remained. The heatmap is saved as a png file in the created directory **/output_heatmaps/**
 - heatmap_coverage(gr_input, output_file_path = getwd(), isoform_group_index)
 - @param: 
@@ -80,3 +80,15 @@
 - @return: a heatmap of the analyzed gene
 - @example: heatmap_coverage(your.gr.input, getwd(), c(1,2,3,1,2))
 
+### 8. generate_heatmap.R (Not a function, side use for generate heatmaps for all files in the directory)<br />
+- Simply change to the directory with all the "_exon_only_binary.csv" files and run the script.
+
+### 9. heatmap_coverage.R <br />
+- Generate a heatmap based on the "_exon_only_binary.csv" files that contain simplified binary forms of transcripts that remained. The heatmap is saved as a png file in the created directory **/output_heatmaps/**
+- heatmap_coverage(gr_input, output_file_path = getwd(), isoform_group_index)
+- @param: 
+  - **_gr_input_** - GRangeList object
+  - **_output_file_path_** - output directory; if not otherwise specified, the output heatmap folder will be in the local directory.
+  - **_isoform_group_index_** - a vector of group number for the input isoforms
+- @return: a heatmap of the analyzed gene
+- @example: heatmap_coverage(your.gr.input, getwd(), c(1,2,3,1,2))
