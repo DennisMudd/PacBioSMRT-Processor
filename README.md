@@ -83,12 +83,29 @@
 ### 8. generate_heatmap.R (Not a function, side use for generate heatmaps for all files in the directory)<br />
 - Simply change to the directory with all the "_exon_only_binary.csv" files and run the script.
 
-### 9. heatmap_coverage.R <br />
-- Generate a heatmap based on the "_exon_only_binary.csv" files that contain simplified binary forms of transcripts that remained. The heatmap is saved as a png file in the created directory **/output_heatmaps/**
-- heatmap_coverage(gr_input, output_file_path = getwd(), isoform_group_index)
+### 9. group_gff.R (Next step of grouping after #6 Function - simplify_gff)<br />
+- Change to the directory when contains all the "_simplified.gtf" files. Output a csv file in the format of xlsx. Row names are the gene names. The column names are the group index. The column contains either NA or the transcript IDs in that group for a gene. The output file name is "result.csv". 
+- group_gff(gff, custom_gene = NULL)
 - @param: 
-  - **_gr_input_** - GRangeList object
-  - **_output_file_path_** - output directory; if not otherwise specified, the output heatmap folder will be in the local directory.
-  - **_isoform_group_index_** - a vector of group number for the input isoforms
-- @return: a heatmap of the analyzed gene
-- @example: heatmap_coverage(your.gr.input, getwd(), c(1,2,3,1,2))
+  - **_gff_** - path of gtf/gff file
+  - **_custom_gene_** - a vector of strings, containing the gene names
+- @return: {"output", "computed_genes"}
+- @example: group_gff(your.gtf.file)
+
+### 10. quantify.R <br />
+- Quantify the number of isoforms based on the xlsx/csv file generated in the previous function. The output is a csv file named "quantify_NA.csv", which 0 appearance is replaced by NA to facilitate the bubbleplot in the next step.
+- quantify(group_csv, quant_file)
+- @param: 
+  - **_group_csv_** - the csv/xlsx file generated in #9 function - group_gff.R
+  - **_quant_file_** - quantification file that the user should provide
+- @return: None
+- @example: quantify("result.csv", "your_quantification.csv")
+
+### 11. bubblePlots.R <br />
+- Create a bubble plot based on quantification for a targeted gene. Create a subdirectory called **/bubbleplot/** and output the bubble plot there.
+- bubblePlots(csv, plot_gene_name)
+- @param: 
+  - **_csv_** - the csv file generated in the previous step - "quantify_NA.csv"
+  - **_plot_gene_name_** - targeted gene for plotting
+- @return: None
+- @example: bubblePlots("quantify_NA.csv", "CD5")
