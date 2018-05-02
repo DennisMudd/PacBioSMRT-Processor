@@ -9,7 +9,7 @@
 ### 1. intron_filter_by_GRanges.R <br />
 - Filter the transcripts with partial exons in comparison to the Gencode Reference Genome. Then filter the ones with intron retention through a self-learning process within the remaining group. Output the binary forms of all three groups, their names, count, and all exons as in GRange.
 - intron_filter_by_GRanges(gr_input)
-- @param: **gr_input** - GRangesList
+- @param: **_gr_input_** - GRangesList
 - @return: {"prefiltered_new_exon", "remain", "filtered", "prefiltered_binary", "remain_binary", "filtered_binary",
        "prefiltered_new_exon_count", "remain_count", "filtered_count","isoform_count", "all_exon"}
 - @example: intron_filter_by_GRanges(import.gff(my.gtf.file))
